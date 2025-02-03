@@ -2,54 +2,13 @@ import { Text, View , FlatList, StyleSheet} from "react-native";
 
 import OptionCardComponent from "@/components/OptionCardComponent";
 import { useNavigation } from "@react-navigation/native";
-
+import { getFunctionalities } from "@/utils/functionalities";
 
 
 export default function HomeScreen() {
   const navigation = useNavigation();
 
-  const functionalities = [
-    {
-      id: "1",
-      title: "Test Your Vocabulary",
-      buttonText: "Start",
-      navigation: "TestVocabScreen"
-    },
-    {
-      id: "2",
-      title: "Draw Characters",
-      buttonText: "Start",
-      navigation: "TestVocabScreen"
-    },
-    {
-      id: "3",
-      title: "Test Your Pronunciation",
-      buttonText: "Start",
-      navigation: "TestVocabScreen"
-  
-    },
-    {
-      id: "4",
-      title: "Read Stories",
-      buttonText: "Start",
-      navigation: "TestVocabScreen"
-    },
-    {
-      id: "5",
-      title: "Your Profile",
-      buttonText: "Start",
-      navigation: "TestVocabScreen"
-    },
-    {
-      id: "6",
-      title: "Settings",
-      buttonText: "Start",
-      navigation: "TestVocabScreen"
-  
-    },
-  
-  ]
-  
+  const functionalities =   getFunctionalities();
   return (
     <View style={styles.container}>
       <FlatList 
