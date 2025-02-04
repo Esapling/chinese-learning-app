@@ -8,7 +8,7 @@ import { getFunctionalities } from "@/utils/functionalities";
 export default function HomeScreen() {
   const navigation = useNavigation();
 
-  const functionalities =   getFunctionalities();
+  const functionalities = getFunctionalities();
   return (
     <View style={styles.container}>
       <FlatList 
