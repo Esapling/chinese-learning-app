@@ -4,16 +4,17 @@ import HeaderText from './HeaderText';
 type Props = {
   title: string;
   buttonText: string;
+  imagePath:any;
   onPress?: () => void;
 };
 
-export default function OptionCardComponent({ title, buttonText,onPress }: Props) {
+export default function OptionCardComponent({ title, buttonText , imagePath, onPress }: Props) {
   return (
     <View style={styles.container}>
       <HeaderText>{title}</HeaderText>          
        <Image 
         style={{width: 100, height: 100}}
-      source={require("../assets/images/react-logo.png")} />
+        source={imagePath} />
       <Button title={buttonText} onPress={onPress} />
     </View>
   )

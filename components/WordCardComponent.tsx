@@ -2,8 +2,12 @@ import { StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import {getWord} from '../services/word.service.js';
 
-export default function WordCardComponent() {
+type Props = {
+  toggleVisibility?: boolean;
+}  
+export default function WordCardComponent({toggleVisibility}: Props) {
   const [word, setWord] = useState("");
+  const [visibility, setViisibility] = useState(false);
   const [character, setCharacter] = useState("");
   const [example, setExample] = useState("");
 
@@ -17,11 +21,28 @@ export default function WordCardComponent() {
     };
     fetchWord();
   }, []);
+
+  useEffect(() => {
+    setViisibility(toggleVisibility);
+  }, [toggleVisibility]);
+
   console.log("word", word);
   return (
     <View style={styles.cardBox}>
-      <Text>Hi</Text>
-      <Text style={styles.characterStyle}>{character}</Text>
+      <View style={styles.characterBox}>
+        <Text style={styles.characterStyle}>{character}</Text>
+      </View>
+      {visibility ? 
+      <> 
+      <View style={styles.meaningContainer}>
+        <Text style={styles.meaning}>{word}</Text>
+      </View>
+      <View style={styles.sentenceContainer}>
+      <Text style={styles.sentence}>{example}</Text>
+      </View>
+      </>
+      : null}
+
     </View>
   )
 }
@@ -29,23 +50,51 @@ export default function WordCardComponent() {
 const styles = StyleSheet.create({
   cardBox:{
     width: '80%',
-    height: '70%',
+    height: '50%',
     backgroundColor: "white",
-    borderRadius: 10,
-    justifyContent: "center",
+    borderRadius: 30,
+    justifyContent: "space-around",
     alignItems: "center",
-    shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 2
     },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
+    shadowOpacity: 0.1,
+    shadowColor: '#000',
+    shadowRadius: 4,
+    elevation: 20,
+    padding: 20,
+  },
+  characterBox:{
+    width: '100%',
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 10,// Inner shadow effect
+ 
   },
   characterStyle:{
-    fontSize: 100,
+    fontSize: 120,
     fontWeight: 'bold',
     color: 'black'
+  },
+  meaningContainer:{
+    borderRadius: 10,
+  },
+  meaning:{
+    fontSize: 40,
+    color: 'black',
+    textAlign: 'center',
+    margin: 10,
+    visibility: 'hidden',
+  },
+  sentenceContainer:{
+    borderRadius: 10,
+  },
+  sentence:{
+    fontSize: 20,
+    color: 'black',
+    textAlign: 'center',
+    margin: 10
   }
+
 })

@@ -14,7 +14,9 @@ export default function HomeScreen() {
       <FlatList 
         data={functionalities}
         renderItem={({item} )=>
-           <OptionCardComponent title={item.title} buttonText={item.buttonText} onPress={() => navigation.navigate(item.navigation)}
+           <OptionCardComponent title={item.title} buttonText={item.buttonText} 
+            imagePath={item.image}
+        onPress={() => navigation.navigate(item.navigation)}
            />}
         keyExtractor={(item) => item.id}
         numColumns={2}
